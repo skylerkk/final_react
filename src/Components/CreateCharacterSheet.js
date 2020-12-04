@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import { axiosHelper } from "../Utilities/axiosHelper";
 import { useToken } from '../Utilities/TokenContext';
 
@@ -20,6 +20,7 @@ function CreateCharacterSheet() {
     const [int, setInt] = useState('');
     const [wis, setWis] = useState('');
     const [cha, setCha] = useState('');
+    const history = useHistory();
 
     async function clickHandler() {
         const headers = {
@@ -36,6 +37,7 @@ function CreateCharacterSheet() {
         const url = `http://localhost:8000/create_sheet`;
         const data = {id: userInfo.data.id, character_name: characterName, player_name: playerName, class: classs, level, size, alignment, race: characterRace, str, dex, con, int, wil: wis, cha};
         axiosHelper(method, url, headers, success, data, failure);
+        history.push("/");
     }
 
     function getUserInfo(res){

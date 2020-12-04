@@ -5,7 +5,7 @@ import { axiosHelper } from "../Utilities/axiosHelper";
 function CharacterSheet() {
 
     const { id } = useParams();
-    const [sheetInfo, setSheetInfo] = useState([]);
+    const [sheetInfo, setSheetInfo] = useState({});
 
     function getSheetInfo(res) {
         console.log(res);
@@ -36,11 +36,11 @@ function CharacterSheet() {
 
     return (
         <div>
-        {sheetInfo.length > 0 && 
-            <h1>{sheetInfo[0].id}</h1>
+        {Object.keys(sheetInfo).length > 0 && 
+            <h1>{sheetInfo.info[0].player_name}</h1>
         }
             <button onClick={() => {
-                console.log(sheetInfo[0].id);
+                console.log('Info', sheetInfo.info[0].player_name);
             }}>Test</button>
         </div>
     )

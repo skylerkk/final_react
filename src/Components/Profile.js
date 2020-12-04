@@ -17,14 +17,11 @@ function Profile() {
 
     function getUserInfo(res) {
         setUserProfile(res.data);
-        console.log(res.data);
+        getSheet(res.data.id);
     }
 
-    function getSheetInfo(res) {
-
-        console.log(res.data);
+    async function getSheetInfo(res) {
         setCharacterSheets(res.data);
-
     }
 
     function failure(err) {
@@ -54,9 +51,9 @@ function Profile() {
         axiosHelper(method, url, headers, getUserInfo, data, failure)
     }
 
-    function getSheet() {
+    function getSheet(profile_id) {
         const method = 'get';
-        const url = `http://localhost:8000/user/sheets/2`;
+        const url = `http://localhost:8000/user/sheets/${profile_id}`;
         const sheet_header = {
             'Content-Type': 'application/json;charset=UTF-8',
             'Access-Control-Allow-Origin': '*',
@@ -79,8 +76,9 @@ function Profile() {
     }
 
     useEffect(() => {
-        getUser();
-        getSheet();
+        if (token != '') {
+            getUser();
+        }
     }, [token]);
 
 
