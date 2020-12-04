@@ -1,24 +1,66 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import Navbar from "./Components/Navbar";
+import Signup from "./Components/Signup";
+import Login from "./Components/Login";
+import Profile from "./Components/Profile";
+import Home from "./Components/Home";
+import CreateCharacterSheet from './Components/CreateCharacterSheet';
+import CharacterSheet from "./Components/CharacterSheet";
+import { AppProvider } from './Utilities/AppContext';
+import { TokenProvider } from './Utilities/TokenContext';
 
 function App() {
+
+
+  const pages = [
+    { readableName: "TTRPG Character Sheet Creator", url: "/" },
+    { readableName: "Sign up", url: "/signup" },
+    { readableName: "Login", url: "/login" },
+    { readableName: "Profile", url: "/profile" },
+    { readableName: "Logout", url: "/logout" }
+  ]
+
+  // useEffect(() => {
+  //   let spage = window.localStorage.getItem("currentPage");
+  //   if (spage !== currentPage) {
+  //     setCurrentPage(JSON.parse(spage));
+  //   }
+  // }, [currentPage]);
+
+  const initialContext = {pages};
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppProvider value={initialContext}>
+      <TokenProvider>
+        <Router>
+          <Navbar/>
+          <div>
+            <Switch>
+              <Route exact={true} path="/">
+                <Home />
+              </Route>
+              <Route path="/signup">
+                <Signup />
+              </Route>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <Route path="/profile">
+                <Profile />
+              </Route>
+              <Route path="/create_character/">
+                <CreateCharacterSheet />
+              </Route>
+              <Route path="/characters/:id">
+                <CharacterSheet/>
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+      </TokenProvider>
+    </AppProvider>
   );
 }
 
