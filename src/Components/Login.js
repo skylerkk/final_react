@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import { useToken } from '../Utilities/TokenContext';
 import { axiosHelper } from '../Utilities/axiosHelper'
-import axios from "axios";
 
 function Login() {
 

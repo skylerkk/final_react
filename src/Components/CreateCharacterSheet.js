@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link, useParams, useHistory } from 'react-router-dom';
+import React, { useState } from "react";
+import { useHistory } from 'react-router-dom';
 import { axiosHelper } from "../Utilities/axiosHelper";
 import { useToken } from '../Utilities/TokenContext';
 
@@ -12,7 +12,6 @@ function CreateCharacterSheet() {
     const [size, setSize] = useState('');
     const [alignment, setAlignment] = useState('');
     const [characterRace, setCharacterRace] = useState('');
-    const [experience, setExperience] = useState('');
     const [level, setLevel] = useState();
     const [str, setStr] = useState('');
     const [dex, setDex] = useState('');

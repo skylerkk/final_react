@@ -1,8 +1,6 @@
-import { get } from "jquery";
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { axiosHelper } from "../Utilities/axiosHelper";
-import { useToken } from '../Utilities/TokenContext';
 
 function ProfileList() {
 
@@ -38,8 +36,8 @@ function ProfileList() {
     }
 
     useEffect(() => {
-        getSheet()
-    }, [])
+        getSheet();
+    }, []);
 
     return (
         <div className="container">

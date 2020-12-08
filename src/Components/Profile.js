@@ -1,6 +1,5 @@
-import { get } from "jquery";
 import React, { useState, useEffect } from "react";
-import { useParams , useHistory} from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import { axiosHelper } from "../Utilities/axiosHelper";
 import { useToken } from '../Utilities/TokenContext';
 
@@ -10,7 +9,6 @@ function Profile() {
     const [userProfile, setUserProfile] = useState({});
     const [characterSheets, setCharacterSheets] = useState([]);
     const [edit, setEdit] = useState(false);
-    const [currentProfile, setCurrProfile] = useState('');
     const [nameChange, setNameChange] = useState('');
     const [emailChange, setEmailChange] = useState('');
     const history = useHistory();
