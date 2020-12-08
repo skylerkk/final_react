@@ -7,6 +7,7 @@ function Signup() {
     const [name, setname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState(false);
     const history = useHistory();
     const { saveToken } = useToken();
 
@@ -27,6 +28,7 @@ function Signup() {
 
     function failure(err) {
         console.log(err);
+        setError(true);
     }
 
     function clickHandler() {
@@ -41,6 +43,12 @@ function Signup() {
     return (
         <div className="container">
             <div className="form-group">
+            {error && <div className="alert alert-warning alert-dismissible fade show" role="alert" id='alert'>
+                    Invalid Email please enter a valid email and try again.
+                <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={() => setError(false)}>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>}
                 <h4>Name:</h4>
                 <input onChange={e => setname(e.target.value)} value={name} type="text" className="form-control" id="InputName" aria-describedby="emailHelp" placeholder="Enter Name" />
             </div>

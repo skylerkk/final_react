@@ -73,7 +73,7 @@ function OtherProfile() {
                             characterSheets.map((item) => {
                                 return (
                                     <li>
-                                        <button onClick={() => history.push(`characters/${item.id}`)}>
+                                        <button onClick = {() => history.push(`../characters/${item.id}`)}>
                                             {item.id}
                                         </button>
                                     </li>);

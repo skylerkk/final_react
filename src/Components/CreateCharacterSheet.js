@@ -78,11 +78,7 @@ function CreateCharacterSheet() {
                     <h5>Alignment:</h5>
                     <input onChange={e => setAlignment(e.target.value)} value={alignment} type="text" className="form-control" id="InputPlayerName" aria-describedby="emailHelp" placeholder="Alignment" />
                 </div>
-                <div className="form-group col-2">
-                    <h5>Experience:</h5>
-                    <input onChange={e => setExperience(e.target.value)} value={experience} type="number" className="form-control" id="InputPlayerName" aria-describedby="emailHelp" placeholder="Experience" />
-                </div>
-                <div className="form-group col-2">
+                <div className="form-group col-4">
                     <h5>Level:</h5>
                     <input onChange={e => setLevel(e.target.value)} value={level} type="number" className="form-control" id="InputLevel" aria-describedby="emailHelp" placeholder="Level" />
                 </div>
