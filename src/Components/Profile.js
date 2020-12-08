@@ -1,19 +1,19 @@
 import { get } from "jquery";
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams , useHistory} from 'react-router-dom';
 import { axiosHelper } from "../Utilities/axiosHelper";
 import { useToken } from '../Utilities/TokenContext';
 
 function Profile() {
 
     const { token } = useToken();
-    const { userId } = useParams();
     const [userProfile, setUserProfile] = useState({});
     const [characterSheets, setCharacterSheets] = useState([]);
     const [edit, setEdit] = useState(false);
     const [currentProfile, setCurrProfile] = useState('');
     const [nameChange, setNameChange] = useState('');
     const [emailChange, setEmailChange] = useState('');
+    const history = useHistory();
 
     function getUserInfo(res) {
         setUserProfile(res.data);
@@ -84,16 +84,23 @@ function Profile() {
 
     return (
         <div className="container">
-            {(userProfile != {} && edit == false) ?
+            {(userProfile != {} && edit == false && token.length > 0) ?
                 <div>
                     <h1>{userProfile.name}</h1>
                     <h3>{userProfile.email}</h3>
                     <button className="btn btn-primary" onClick={changeEdit}>Edit Profile Info</button>
                     <h4>Character Sheets</h4>
-                    {characterSheets != [] ?
-                        characterSheets.map((item) => {
-                            return (<p>{item.id}</p>);
-                        }) : <p>Test</p>}
+                    <ul>
+                        {characterSheets != [] ?
+                            characterSheets.map((item) => {
+                                return (
+                                    <li>
+                                        <button onClick = {() => history.push(`characters/${item.id}`)}>
+                                            {item.id}
+                                        </button>
+                                    </li>);
+                            }) : <p>Test</p>}
+                    </ul>
                 </div>
                 :
                 <div>

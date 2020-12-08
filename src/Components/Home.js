@@ -34,7 +34,7 @@ function Home() {
                 </div>}
             </div>
             <div className="py-5">
-                <button className="btn btn-primary" onClick={() => history.push('/characters')}>View a Character Sheets</button>
+                <button className="btn btn-primary" onClick={() => history.push('/all_users')}>View User Profiles</button>
             </div>
         </div>
     )

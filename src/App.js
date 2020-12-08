@@ -8,6 +8,8 @@ import Profile from "./Components/Profile";
 import Home from "./Components/Home";
 import CreateCharacterSheet from './Components/CreateCharacterSheet';
 import CharacterSheet from "./Components/CharacterSheet";
+import AllProfiles from "./Components/ProfileList";
+import OtherProfile from "./Components/OtherProfile";
 import { AppProvider } from './Utilities/AppContext';
 import { TokenProvider } from './Utilities/TokenContext';
 
@@ -55,6 +57,12 @@ function App() {
               </Route>
               <Route path="/characters/:id">
                 <CharacterSheet/>
+              </Route>
+              <Route path="/all_users">
+                <AllProfiles />
+              </Route>
+              <Route path="/profiles/:id">
+                <OtherProfile />
               </Route>
             </Switch>
           </div>
