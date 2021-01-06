@@ -9,7 +9,6 @@ function ProfileList() {
     const history = useHistory();
 
     function getUserInfo(res) {
-        console.log(res.data);
         getAllUsers(res.data);
     }
 
@@ -29,7 +28,7 @@ function ProfileList() {
 
     function getSheet() {
         const method = 'get';
-        const url = `http://localhost:8000/all_users`;
+        const url = `all_users`;
         const data = {};
 
         axiosHelper(method, url, headers, getUserInfo, data, failure)
@@ -47,13 +46,13 @@ function ProfileList() {
                     <ul>
                         {allUsers.map((item, index) => {
                             return(<li>
-                                <button onClick={()=> history.push(`/profiles/${item.id}`)}>{item.email}</button>
+                                <button className="btn btn-primary" onClick={()=> history.push(`/profiles/${item.id}`)}>{item.email}</button>
                             </li>);
                         })}
                     </ul>
                 </div>
                 :
-                <h1> No Users </h1>
+                <h1> No Users or they are loading </h1>
 
             }
         </div>

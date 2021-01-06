@@ -18,8 +18,7 @@ function Login() {
     }
 
     function success(res) {
-        console.log(res);
-        if (res.status == 200) {
+        if (res.status === 200) {
             saveToken(res.data.access_token);
             history.push('/profile');
         }
@@ -32,8 +31,8 @@ function Login() {
 
     function clickHandler() {
         const method = 'post';
-        const url = 'http://localhost:8000/v1/oauth/token';
-        const data = { username: email, password, grant_type: "password", client_id: 2, client_secret: "iTdhY1t4jkKYzjWnFsGn73H6sTGF0olGm3W0TYF8", scope: "" };
+        const url = 'v1/oauth/token';
+        const data = { username: email, password, grant_type: "password", client_id: 2, client_secret: "bU6jTZl48vPHyQRwiebWjxAn9BB7ranALwLQ0ewe", scope: "" };
         axiosHelper(method, url, headers, success, data, failure)
     }
 

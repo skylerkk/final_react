@@ -37,21 +37,21 @@ function Profile() {
     }
     function getUser() {
         const method = 'get';
-        const url = `http://localhost:8000/api/user`;
+        const url = `api/user`;
         const data = {};
         axiosHelper(method, url, headers, getUserInfo, data, failure)
     }
 
     function updateUser() {
         const method = 'post';
-        const url = `http://localhost:8000/users/update`;
+        const url = `users/update`;
         const data = { id: userProfile.id, name: nameChange, email: emailChange };
         axiosHelper(method, url, headers, getUserInfo, data, failure)
     }
 
     function getSheet(profile_id) {
         const method = 'get';
-        const url = `http://localhost:8000/user/sheets/${profile_id}`;
+        const url = `user/sheets/${profile_id}`;
         const sheet_header = {
             'Content-Type': 'application/json;charset=UTF-8',
             'Access-Control-Allow-Origin': '*',
@@ -82,7 +82,9 @@ function Profile() {
 
     return (
         <div className="container">
-            {(userProfile != {} && edit == false && token.length > 0) ?
+            {(userProfile != {} && token.length > 0) ?
+
+                (edit === false) ?
                 <div>
                     <h1>{userProfile.name}</h1>
                     <h3>{userProfile.email}</h3>
@@ -93,11 +95,11 @@ function Profile() {
                             characterSheets.map((item) => {
                                 return (
                                     <li>
-                                        <button onClick = {() => history.push(`characters/${item.id}`)}>
+                                        <button className="btn btn-primary" onClick = {() => history.push(`characters/${item.id}`)}>
                                             {item.id}
                                         </button>
                                     </li>);
-                            }) : <p>Test</p>}
+                            }) : <p>No Sheets</p>}
                     </ul>
                 </div>
                 :
@@ -112,6 +114,8 @@ function Profile() {
                     </div>
                     <button className="btn btn-primary" onClick={changeEdit}>Save Changes</button>
                 </div>
+                :
+                <h1>Loading User or User is not Found</h1>
             }
 
         </div>

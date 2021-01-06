@@ -19,7 +19,6 @@ function Signup() {
     }
 
     function success(res) {
-        console.log(res.data.data.token);
         if (res.status === 200) {
             saveToken(res.data.data.token);
             history.push('/profile');
@@ -34,7 +33,7 @@ function Signup() {
     function clickHandler() {
 
         const method = 'post';
-        const url = 'http://localhost:8000/register';
+        const url = 'register';
         const data = { name, email, password };
 
         axiosHelper(method, url, headers, success, data, failure);

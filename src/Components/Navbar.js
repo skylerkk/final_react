@@ -27,7 +27,7 @@ function Navbar(){
                     <ul className="navbar-nav ml-auto">
                         {
                             pages.filter((item, index) => {
-                                if (item.url == '/'){
+                                if (item.url === '/'){
                                     return item;
                                 }
                                 if (token.length > 0){

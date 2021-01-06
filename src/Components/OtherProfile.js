@@ -1,8 +1,6 @@
-import { get } from "jquery";
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from 'react-router-dom';
 import { axiosHelper } from "../Utilities/axiosHelper";
-import { useToken } from '../Utilities/TokenContext';
 
 function OtherProfile() {
 
@@ -12,13 +10,11 @@ function OtherProfile() {
     const [characterSheets, setCharacterSheets] = useState([]);
 
     function getProfileInfo(res) {
-        console.log(res.data);
         setProfileInfo(res.data);
         getSheet(id);
     }
 
     function getSheetInfo(res){
-        console.log("data", res.data);
         setCharacterSheets(res.data);
     }
 
@@ -26,9 +22,6 @@ function OtherProfile() {
     function failure(err) {
         console.log(err);
     }
-
-    // useEffect(() => {
-    // }, [userProfile])
 
     const headers = {
         'Content-Type': 'application/json;charset=UTF-8',
@@ -38,7 +31,7 @@ function OtherProfile() {
 
     async function getProfile() {
         const method = 'get';
-        const url = `http://localhost:8000/users/${id}`;
+        const url = `https://cors-anywhere.herokuapp.com/https://ttrpgbackend.herokuapp.com/users/${id}`;
         const data = {};
 
         await axiosHelper(method, url, headers, getProfileInfo, data, failure)
@@ -46,7 +39,7 @@ function OtherProfile() {
 
     async function getSheet(profile_id) {
         const method = 'get';
-        const url = `http://localhost:8000/user/sheets/${profile_id}`;
+        const url = `https://cors-anywhere.herokuapp.com/https://ttrpgbackend.herokuapp.com/user/sheets/${profile_id}`;
         const sheet_header = {
             'Content-Type': 'application/json;charset=UTF-8',
             'Access-Control-Allow-Origin': '*',
@@ -73,7 +66,7 @@ function OtherProfile() {
                             characterSheets.map((item) => {
                                 return (
                                     <li>
-                                        <button onClick = {() => history.push(`../characters/${item.id}`)}>
+                                        <button className="btn btn-primary" onClick = {() => history.push(`../characters/${item.id}`)}>
                                             {item.id}
                                         </button>
                                     </li>);
@@ -81,7 +74,7 @@ function OtherProfile() {
                     </ul>
                 </div>
                 :
-                <h1> User does not exist </h1>
+                <h1> User does not exist or is still loading</h1>
 
             }
         </div>
